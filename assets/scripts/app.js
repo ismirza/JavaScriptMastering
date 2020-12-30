@@ -36,7 +36,7 @@ function calculateResult(calculationType) {
   let mathOperator;
   if (calculationType === 'ADD') {
     currentResult += enteredNumber;
-    mathOperator = '+';
+    mathOperator = '+'; 
   } else if (calculationType === 'SUBTRACT') {
     currentResult -= enteredNumber;
     mathOperator = '-';
