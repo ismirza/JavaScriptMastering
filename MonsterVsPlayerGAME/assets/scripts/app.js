@@ -30,19 +30,43 @@ function writeToLog(event, value, monsterHealth, playerHealth) {
             event: event,
             value: value,
             target: 'MONSTER',
-            finalMonsterHealth: currentMonsterHealth,
+            finalMonsterHealth: monsterHealth,
             finalPlayerHealth: playerHealth
         };
-        battleLog.push(logEntry);
+    } else if (event === LOG_EVENT_PAYER_STRONG_ATTACK) {
+        logEntry = {
+            event: event,
+            value: value,
+            target: 'MONSTER',
+            finalMonsterHealth: monsterHealth,
+            finalPlayerHealth: playerHealth
+        };
+        
     } else if (event === LOG_EVENT_MONSTER_ATTACK) {
         logEntry = {
             event: event,
             value: value,
             target: 'PLAYER',
-            finalMonsterHealth: currentMonsterHealth,
+            finalMonsterHealth: monsterHealth,
             finalPlayerHealth: playerHealth
         };
-    }   else if ()
+    } else if (event === LOG_EVENT_PLAYER_HEAL) {
+        logEntry = {
+            event: event,
+            value: value,
+            target: 'PLAYER',
+            finalMonsterHealth: monsterHealth,
+            finalPlayerHealth: playerHealth
+        };
+    } else if (event === LOG_EVENT_GAME_OVER) {
+        logEntry = {
+            event: event,
+            value: value,
+            finalMonsterHealth: monsterHealth,
+            finalPlayerHealth: playerHealth
+        };
+    }
+    battleLog.push(logEntry);
 }
 
 adjustHealthBars(chosenMaxLife);
@@ -57,6 +81,12 @@ function endRound() {
     const initialPlayerHealth = currentPlayerHealth;
     const playerDamage = dealPlayerDamage(MONSTER_ATTACK_VALUE);
     currentPlayerHealth -= playerDamage;
+    writeToLog(
+        LOG_EVENT_MONSTER_ATTACK,
+        playerDamage,
+        currentMonsterHealth,
+        currentPlayerHealth
+        );
 
     if (currentPlayerHealth <= 0 && hasBonusLife) {
         hasBonusLife = false;
@@ -112,7 +142,12 @@ function healPlayerHandler() {
     endRound();
 }
 
+function printLogHandler() {
+    console.log(battleLog);
+}
+
 attackBtn.addEventListener('click', attackHandler);
 strongAttackBtn.addEventListener('click', strongAttackHandler);
 healBtn.addEventListener('click', healPlayerHandler);
 bonusLifeEl.addEventListener();
+logBtn.addEventListener('click', printLogHandler);
