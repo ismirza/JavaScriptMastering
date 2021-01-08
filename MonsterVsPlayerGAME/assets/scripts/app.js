@@ -97,7 +97,12 @@ function endRound() {
 
     if (currentMonsterHealth <= 0 && currentPlayerHealth > 0) {
         alert('You won!');
-        
+        writeToLog(
+        LOG_GAME_OVER,
+        'PLAYER WON',
+        currentMonsterHealth,
+        currentPlayerHealth
+        );
     } else if (currentPlayerHealth <= 0 && currentMonsterHealth > 0) {
         alert ('You lost!');
         reset();
