@@ -41,7 +41,6 @@ function writeToLog(event, value, monsterHealth, playerHealth) {
             finalMonsterHealth: monsterHealth,
             finalPlayerHealth: playerHealth
         };
-        
     } else if (event === LOG_EVENT_MONSTER_ATTACK) {
         logEntry = {
             event: event,
@@ -98,7 +97,7 @@ function endRound() {
     if (currentMonsterHealth <= 0 && currentPlayerHealth > 0) {
         alert('You won!');
         writeToLog(
-        LOG_GAME_OVER,
+        LOG_EVENT_GAME_OVER,
         'PLAYER WON',
         currentMonsterHealth,
         currentPlayerHealth
@@ -153,5 +152,4 @@ function printLogHandler() {
 attackBtn.addEventListener('click', attackHandler);
 strongAttackBtn.addEventListener('click', strongAttackHandler);
 healBtn.addEventListener('click', healPlayerHandler);
-bonusLifeEl.addEventListener();
 logBtn.addEventListener('click', printLogHandler);
