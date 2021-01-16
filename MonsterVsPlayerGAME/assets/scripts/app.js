@@ -128,7 +128,10 @@ function endRound() {
 
 function attackMonster(mode) {
   const maxDamage = mode === MODE_ATTACK ? ATTACK_VALUE : STRONG_ATTACK_VALUE;
-  const logEvent = mode === MODE_ATTACK ? LOG_EVENT_PLAYER_ATTACL : LOG_EVENT_PLAYER_STRONG_ATTACK;
+  const logEvent = 
+  mode === MODE_ATTACK 
+  ? LOG_EVENT_PLAYER_ATTACL 
+  : LOG_EVENT_PLAYER_STRONG_ATTACK;
  // if (mode === MODE_ATTACK) {
   //  maxDamage = ATTACK_VALUE;
   //  logEvent = LOG_EVENT_PLAYER_ATTACK;
